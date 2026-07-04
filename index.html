@@ -244,7 +244,114 @@
 
 <!-- ============ HERO ============ -->
 <header>
-  <div class="stripes hero-band">
+ !--
+  ============================================================
+  4TH OF JULY SALE BANNER — Buffet Dog Training
+  Paste this whole block right after the opening <body> tag,
+  or right above the <!-- ============ HERO ============ --> comment.
+  Uses the same colors/fonts as the rest of the site.
+  ============================================================
+-->
+<div class="july4-banner">
+  <div class="july4-inner">
+    <span class="july4-flags">🇺🇸🇺🇸</span>
+    <span class="july4-text">
+      <strong>4th of July Sale</strong> — Save on training packages this week only
+    </span>
+    <span class="july4-flags">🇺🇸🇺🇸</span>
+    <span class="july4-countdown" id="july4Countdown">--d --h --m --s</span>
+  </div>
+</div>
+ 
+<style>
+  .july4-banner{
+    background: linear-gradient(90deg, var(--navy) 0%, var(--navy-deep) 100%);
+    color: var(--cream-2);
+    padding: 10px 0;
+    text-align: center;
+    position: relative;
+    z-index: 60;
+    border-bottom: 2px solid var(--blue);
+  }
+  .july4-inner{
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .july4-flags{
+    font-size: 18px;
+    letter-spacing: 2px;
+  }
+  .july4-text{
+    font-family: var(--body);
+    font-size: 14px;
+    letter-spacing: .02em;
+  }
+  .july4-text strong{
+    font-family: var(--serif);
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: var(--cream-2);
+  }
+  .july4-countdown{
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: .08em;
+    background: rgba(255,255,255,.12);
+    padding: 3px 10px;
+    border-radius: 3px;
+  }
+  @media(max-width:600px){
+    .july4-text{ font-size: 12.5px }
+    .july4-flags{ font-size: 15px }
+  }
+</style>
+ 
+<script>
+(function(){
+  // Countdown target: next Monday at 00:00 (local time)
+  function getNextMonday(){
+    const now = new Date();
+    const day = now.getDay(); // 0=Sun,1=Mon,...6=Sat
+    let daysUntilMonday = (8 - day) % 7;
+    if (daysUntilMonday === 0) daysUntilMonday = 7; // if today is Monday, go to NEXT Monday
+    const target = new Date(now.getFullYear(), now.getMonth(), now.getDate() + daysUntilMonday, 0, 0, 0, 0);
+    return target;
+  }
+ 
+  const target = getNextMonday();
+  const el = document.getElementById('july4Countdown');
+ 
+  function update(){
+    const now = new Date();
+    let diff = target - now;
+    if (diff <= 0){
+      el.textContent = "Sale ended";
+      clearInterval(timer);
+      return;
+    }
+    const d = Math.floor(diff / (1000*60*60*24));
+    diff -= d * (1000*60*60*24);
+    const h = Math.floor(diff / (1000*60*60));
+    diff -= h * (1000*60*60);
+    const m = Math.floor(diff / (1000*60));
+    diff -= m * (1000*60);
+    const s = Math.floor(diff / 1000);
+    el.textContent = d + "d " + h + "h " + m + "m " + s + "s";
+  }
+ 
+  update();
+  const timer = setInterval(update, 1000);
+})();
+</script>
+   <div class="stripes hero-band">
     <div class="wrap hero-inner">
       <div class="circle rise d1">
         <div class="logo">
