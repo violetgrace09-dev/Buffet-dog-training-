@@ -37,7 +37,12 @@
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{font-family:var(--body);background:var(--paper);color:var(--navy);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body{font-family:var(--body);background:
+      radial-gradient(circle at 8% 12%, rgba(169,196,226,.35) 0, transparent 40%),
+      radial-gradient(circle at 94% 6%, rgba(246,238,222,.6) 0, transparent 35%),
+      radial-gradient(circle at 90% 80%, rgba(169,196,226,.25) 0, transparent 40%),
+      var(--paper);
+    color:var(--navy);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
   a{color:inherit;text-decoration:none}
   .wrap{max-width:1120px;margin:0 auto;padding:0 28px}
 
@@ -53,9 +58,9 @@
   .nav-links{display:flex;gap:28px;align-items:center;font-size:15px;font-weight:600}
   .nav-links a{color:var(--ink-soft);transition:color .2s}
   .nav-links a:hover{color:var(--navy)}
-  .btn{display:inline-block;font-weight:700;font-size:15px;padding:12px 24px;border-radius:3px;transition:transform .15s,box-shadow .2s,background .2s,color .2s;cursor:pointer;border:none}
-  .btn-primary{background:var(--navy);color:var(--cream-2);box-shadow:0 10px 22px -10px rgba(43,58,94,.6)}
-  .btn-primary:hover{background:var(--navy-deep);transform:translateY(-2px)}
+  .btn{display:inline-block;font-weight:700;font-size:15px;padding:12px 24px;border-radius:3px;transition:transform .15s,box-shadow .2s,background .2s,color .2s;cursor:pointer;border:none;position:relative;overflow:hidden}
+  .btn-primary{background:linear-gradient(135deg,var(--navy),var(--navy-deep));color:var(--cream-2);box-shadow:0 10px 22px -10px rgba(43,58,94,.6)}
+  .btn-primary:hover{background:linear-gradient(135deg,var(--navy-deep),#141d33);transform:translateY(-2px)}
   .btn-ghost{border:1.6px solid var(--navy);color:var(--navy);background:transparent}
   .btn-ghost:hover{background:var(--navy);color:var(--cream-2)}
   @media(max-width:760px){.nav-links a:not(.btn){display:none}}
@@ -104,8 +109,10 @@
   .trio{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
   .svc{
     background:var(--cream);border:1px solid var(--line);border-radius:8px;padding:38px 30px;text-align:center;
-    transition:transform .2s,box-shadow .25s;
+    transition:transform .2s,box-shadow .25s;position:relative;overflow:hidden
   }
+  .svc::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--blue),var(--navy));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+  .svc:hover::before{transform:scaleX(1)}
   .svc:hover{transform:translateY(-5px);box-shadow:0 26px 46px -28px rgba(43,58,94,.4)}
   .svc .ring{width:58px;height:58px;border-radius:50%;background:var(--blue);margin:0 auto 18px;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:700;color:var(--navy);font-size:22px}
   .svc h3{font-family:var(--serif);font-weight:600;font-size:24px;margin-bottom:10px}
@@ -155,7 +162,9 @@
   /* ---------- pricing ---------- */
   #pricing{background:var(--cream)}
   .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-  .price{border:1px solid var(--line);border-radius:8px;padding:34px 30px;background:var(--cream-2);transition:transform .2s,box-shadow .25s,border-color .2s}
+  .price{border:1px solid var(--line);border-radius:8px;padding:34px 30px;background:var(--cream-2);transition:transform .2s,box-shadow .25s,border-color .2s;position:relative;overflow:hidden}
+  .price::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--blue),var(--navy));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+  .price:hover::before{transform:scaleX(1)}
   .price:hover{transform:translateY(-4px);box-shadow:0 26px 44px -28px rgba(43,58,94,.4);border-color:var(--blue)}
   .price.feat{background:var(--navy);color:var(--cream-2);border-color:var(--navy)}
   .price h3{font-family:var(--serif);font-weight:600;font-size:23px;margin-bottom:6px}
@@ -483,6 +492,12 @@
   </div>
 </section>
 
+<div style="line-height:0">
+  <svg viewBox="0 0 1200 60" preserveAspectRatio="none" style="width:100%;height:60px;display:block">
+    <path d="M0,20 C 200,60 400,0 600,20 C 800,40 1000,0 1200,20 L1200,60 L0,60 Z" fill="#2b3a5e"></path>
+  </svg>
+</div>
+
 <!-- ============ PROOF ============ -->
 <section id="proof">
   <div class="wrap">
@@ -492,6 +507,12 @@
     <div class="quote-by">— Anna Jorden, Shreveport</div>
   </div>
 </section>
+
+<div style="line-height:0;transform:rotate(180deg)">
+  <svg viewBox="0 0 1200 60" preserveAspectRatio="none" style="width:100%;height:60px;display:block">
+    <path d="M0,20 C 200,60 400,0 600,20 C 800,40 1000,0 1200,20 L1200,60 L0,60 Z" fill="#2b3a5e"></path>
+  </svg>
+</div>
 
 <!-- ============ VIDEOS ============ -->
 <section id="videos">
