@@ -246,11 +246,11 @@
 <header>
 <div class="july4-banner">
   <div class="july4-inner">
-    <span class="july4-flags">🇺🇸🇺🇸</span>
+    <span class="july4-flags">☀️☀️</span>
     <span class="july4-text">
-      <strong>4th of July Sale</strong> — Save on training packages this week only
+      <strong>Summer Sale</strong> — Save 30% on training packages till the 15th
     </span>
-    <span class="july4-flags">🇺🇸🇺🇸</span>
+    <span class="july4-flags">☀️☀️</span>
     <span class="july4-countdown" id="july4Countdown">--d --h --m --s</span>
   </div>
 </div>
@@ -309,13 +309,22 @@
 <script>
 (function(){
   // Countdown target: next Monday at 00:00 (local time)
-  function getNextMonday(){
+  function (function(){
+  // Countdown target: July 15th at 11:59:59 PM (local time)
+  function getSaleEndDate(){
+    return new Date(2026, 6, 15, 23, 59, 59, 0); // month is 0-indexed, so 6 = July
+  }
+
+  const target = getSaleEndDate();
+  const el = document.getElementById('july4Countdown');
+
+  function update(){
     const now = new Date();
-    const day = now.getDay(); // 0=Sun,1=Mon,...6=Sat
-    let daysUntilMonday = (8 - day) % 7;
-    if (daysUntilMonday === 0) daysUntilMonday = 7; // if today is Monday, go to NEXT Monday
-    const target = new Date(now.getFullYear(), now.getMonth(), now.getDate() + daysUntilMonday, 0, 0, 0, 0);
-    return target;
+    let diff = target - now;
+    if (diff <= 0){
+      el.textContent = "Sale ended";
+      clearInterval(timer);
+      return;
   }
  
   const target = getNextMonday();
