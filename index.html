@@ -246,11 +246,11 @@
 <header>
 <div class="july4-banner">
   <div class="july4-inner">
-    <span class="july4-flags">☀️☀️</span>
+    <span class="july4-flags">🇺🇸🇺🇸</span>
     <span class="july4-text">
-      <strong>Summer sale</strong> — Save on training packages through the 15th
+      <strong>4th of July Sale</strong> — Save on training packages this week only
     </span>
-    <span class="july4-flags">☀️☀️</span>
+    <span class="july4-flags">🇺🇸🇺🇸</span>
     <span class="july4-countdown" id="july4Countdown">--d --h --m --s</span>
   </div>
 </div>
@@ -305,15 +305,22 @@
     .july4-flags{ font-size: 15px }
   }
 </style>
+ 
+<script>
 (function(){
-  // Countdown target: July 15th at 11:59:59 PM (local time)
-  function getSaleEndDate(){
-    return new Date(2026, 6, 15, 23, 59, 59, 0); // month is 0-indexed, so 6 = July
+  // Countdown target: next Monday at 00:00 (local time)
+  function getNextMonday(){
+    const now = new Date();
+    const day = now.getDay(); // 0=Sun,1=Mon,...6=Sat
+    let daysUntilMonday = (8 - day) % 7;
+    if (daysUntilMonday === 0) daysUntilMonday = 7; // if today is Monday, go to NEXT Monday
+    const target = new Date(now.getFullYear(), now.getMonth(), now.getDate() + daysUntilMonday, 0, 0, 0, 0);
+    return target;
   }
-
-  const target = getSaleEndDate();
+ 
+  const target = getNextMonday();
   const el = document.getElementById('july4Countdown');
-
+ 
   function update(){
     const now = new Date();
     let diff = target - now;
@@ -554,9 +561,9 @@
         <ul><li>One-on-one in your home</li><li>Custom plan for your dog</li><li>Follow-up notes after each visit</li></ul>
       </div>
       <div class="price feat">
-        <span class="sale-tag">Sale · Save $120</span>
+        <span class="sale-tag">Sale · Save $180</span>
         <h3>Training Package</h3>
-        <div class="amt"><span class="was">$600</span>$480<small>/6 sessions</small></div>
+        <div class="amt"><span class="was">$600</span>$420<small>/6 sessions</small></div>
         <ul><li>Best for real behavior change</li><li>Structured progression</li><li>Between-session support</li></ul>
       </div>
       <div class="price">
@@ -591,7 +598,9 @@
 <div class="modal-overlay" id="bookModal" onclick="if(event.target===this)closeBooking()">
   <div class="modal" role="dialog" aria-modal="true" aria-label="Book a session">
     <div class="modal-head">
-      <button class="modal-close" <button class="modal-close" onclick="closeBooking()" aria-label="Close">&times;</button>        <div class="ttl">Book a Session</div>
+      <button class="modal-close" onclick="closeBooking()" aria-label="Close">&times;</button>
+      <div class="mh-inner">
+        <div class="ttl">Book a Session</div>
         <div class="sub">Buffet Dog Training</div>
       </div>
     </div>
@@ -672,7 +681,7 @@
   // No-backend form: opens the visitor's email app pre-filled.
   // EDIT:CONTACT — change the destination address here.
   function sendMsg(){
-    var to = 'Buffetdogtraining@gmail.com';
+    var to = 'VioletGrace09@gmail.com';
     var name = encodeURIComponent(document.getElementById('f-name').value || '');
     var contact = encodeURIComponent(document.getElementById('f-contact').value || '');
     var msg = encodeURIComponent(document.getElementById('f-msg').value || '');
